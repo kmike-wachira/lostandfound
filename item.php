@@ -1,3 +1,7 @@
+<?php 
+include('backend/connect.php');
+   $_GET['id'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,42 +79,36 @@
   <!--Main layout-->
   <main class="mt-5 pt-4">
     <div class="container dark-grey-text mt-5">
-
       <!--Grid row-->
       <div class="row wow fadeIn">
-
         <!--Grid column-->
+        <?php 
+         $itemsql="SELECT * FROM items WHERE id=${_GET['id']}";
+         $item_result=$connect->query($itemsql);
+         if($item_result):
+           while($itemrows=$item_result->fetch_assoc()):?>
         <div class="col-md-6 mb-4">
-
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt="">
-
+          <img src="<?= "images/".$itemrows['image'] ?>" class="img-fluid" alt="<?=$itemrows['item_name']?>">
         </div>
         <!--Grid column-->
-
         <!--Grid column-->
         <div class="col-md-6 mb-4">
-
           <!--Content-->
           <div class="p-4">
-
             <div class="mb-3">
               <a href="">
-                <span class="badge purple mr-1">Category 2</span>
+                <span class="badge purple mr-1"><?=$itemrows['category']?></span>
               </a>            
             </div>
 
             <p class="lead">
               <span class="mr-1">
-                <strong>Found on:</strong>
+                <strong> Found on </strong>
               </span>
-              <span>12/12/2000</span>
+              <span><?=  date("Y,m,d",strtotime($itemrows['date'])) ?></span>
             </p>
-
             <p class="lead font-weight-bold">Description</p>
-
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolor suscipit libero eos atque quia ipsa
-              sint voluptatibus!
-              Beatae sit assumenda asperiores iure at maxime atque repellendus maiores quia sapiente.</p>
+            <p><?= $itemrows['description']?></p>
 
             <form class="d-flex justify-content-left">
               <!-- Default input -->
@@ -118,12 +116,17 @@
                 <i class="fas fa-hands-helping ml-1"></i>
               </button>
             </form>
-
           </div>
           <!--Content-->
 
         </div>
         <!--Grid column-->
+        <?php
+           endwhile;
+          else:
+            echo "item not found";
+          endif;
+        ?>
 
       </div>
       <!--Grid row-->
@@ -147,22 +150,22 @@
       <!--Grid row-->
 
       <!--Grid row-->
-      <div class="row wow fadeIn">
-        <!--Grid column-->
-        <div class="col-lg-4 col-md-12 mb-4">
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg" class="img-fluid" alt="">
-        </div>
-        <!--Grid column-->
-        <!--Grid column-->
-        <div class="col-lg-4 col-md-6 mb-4">
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/12.jpg" class="img-fluid" alt="">
-        </div>
-        <!--Grid column-->
-        <!--Grid column-->
-        <div class="col-lg-4 col-md-6 mb-4">
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="">
-        </div>
-        <!--Grid column-->
+      <div class="row wow fadeIn"> 
+        <?php 
+         $relateditemsql="SELECT * FROM items WHERE category='documents' limit 3";
+         $relateditem_result=$connect->query($relateditemsql);
+         if($relateditem_result):
+           while($relateditemrows=$relateditem_result->fetch_assoc()):?>
+           
+            <div class="col-lg-4 col-md-12 mb-4">
+              <img src="<?="images/".$relateditemrows['image'] ?>" class="img-fluid" alt="">
+            </div>
+        <?php
+           endwhile;
+          else:
+            echo "No related item";
+          endif;
+        ?>
 
       </div>
       <!--Grid row-->
@@ -173,20 +176,6 @@
 
   <!--Footer-->
   <footer class="page-footer text-center font-small mt-4 wow fadeIn">
-
-    <!--Call to action-->
-    <div class="pt-4">
-      <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank"
-        role="button">Download MDB
-        <i class="fas fa-download ml-2"></i>
-      </a>
-      <a class="btn btn-outline-white" href="https://mdbootstrap.com/education/bootstrap/" target="_blank" role="button">Start
-        free tutorial
-        <i class="fas fa-graduation-cap ml-2"></i>
-      </a>
-    </div>
-    <!--/.Call to action-->
-
     <hr class="my-4">
 
     <!-- Social icons -->
@@ -237,13 +226,13 @@
 
   <!-- SCRIPTS -->
   <!-- JQuery -->
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="assets/js/jquery-3.4.1.min.js"></script>
   <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="js/popper.min.js"></script>
+  <script type="text/javascript" src="assets/js/popper.min.js"></script>
   <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <script type="text/javascript" src="assets/js/mdb.min.js"></script>
   <!-- Initializations -->
   <script type="text/javascript">
     // Animations initialization

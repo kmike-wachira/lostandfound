@@ -1,3 +1,4 @@
+<?php include('backend/connect.php')?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -205,7 +206,6 @@
   <!--Main layout-->
   <main>
     <div class="container">
-
       <nav class="navbar navbar-expand-lg navbar-dark indigo mb-4">
         <ul class="nav nav-tabs mx-auto " id="myTab" role="tablist">
           <li class="nav-item white">
@@ -224,13 +224,7 @@
             <a class="nav-link" id="ellects-tab" data-toggle="tab" href="#elects" role="tab" aria-controls="elects"
               aria-selected="false">Electronics</a>
           </li>
-          <form class="form-inline m-auto">
-            <div class="md-form my-0">
-              <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-            </div>
-          </form>
-        </ul>
-    
+        </ul>    
         <!-- Collapsible content -->
       
       </nav>
@@ -246,12 +240,16 @@
           <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
             <div class="row wow fadeIn">
 
-              <!--Grid column-->
-              <div class="col-lg-3 col-md-6 mb-4">
-    
+             
+             <?php 
+              $allsql="SELECT * FROM items";
+              $all_result=$connect->query($allsql);
+              if($all_result):
+                while($allrows=$all_result->fetch_assoc()):?>
+                  <!--Grid column-->
+                  <div class="col-lg-3 col-md-6 mb-4">    
                 <!--Card-->
-                <div class="card">
-    
+                <div class="card">    
                   <!--Card image-->
                   <div class="view overlay" style="height: 150px;">
                     <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"  alt="">
@@ -259,24 +257,22 @@
                       <div class="mask rgba-white-slight"></div>
                     </a>
                   </div>
-                  <!--Card image-->
-    
+                  <!--Card image-->    
                   <!--Card content-->
                   <div class="card-body text-center">
                     <!--Category & Title-->
                     <a href="" class="grey-text">
-                      <h5 >Shirt</h5>
+                      <h5 ><?=$allrows['category']?></h5>
                     </a>
                     <h5>
                       <strong>
-                        <a href="" class="dark-grey-text">Denim shirt
-                        </a>
+                        <a href="" class="dark-grey-text"><?=$allrows['item_name']?> </a>
                       </strong>
                     </h5>
                     <p>
-                     found on 12/6/2018
+                     Found on <?=  date("Y,m,d",strtotime($allrows['date'])) ?>
                     </p>
-                    <a href=""> see more</a>
+                    <a href="item.php?id=1"> see more</a>
     
                   </div>
                   <!--Card content-->
@@ -285,392 +281,29 @@
                 <!--Card-->
     
               </div>
-              <!--Grid column-->
-                 <!--Grid column-->
-                 <div class="col-lg-3 col-md-6 mb-4">
-    
-                  <!--Card-->
-                  <div class="card">
-      
-                    <!--Card image-->
-                    <div class="view overlay" style="height: 150px;">
-                      <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"  alt="">
-                      <a>
-                        <div class="mask rgba-white-slight"></div>
-                      </a>
-                    </div>
-                    <!--Card image-->
-      
-                    <!--Card content-->
-                    <div class="card-body text-center">
-                      <!--Category & Title-->
-                      <a href="" class="grey-text">
-                        <h5 >Shirt</h5>
-                      </a>
-                      <h5>
-                        <strong>
-                          <a href="" class="dark-grey-text">Denim shirt
-                          </a>
-                        </strong>
-                      </h5>
-                      <p>
-                       found on 12/6/2018
-                      </p>
-                      <a href=""> see more</a>
-      
-                    </div>
-                    <!--Card content-->
-      
-                  </div>
-                  <!--Card-->
-      
-                </div>
-                <!--Grid column-->
-                   <!--Grid column-->
-              <div class="col-lg-3 col-md-6 mb-4">
-    
-                <!--Card-->
-                <div class="card">
-    
-                  <!--Card image-->
-                  <div class="view overlay" style="height: 150px;">
-                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"  alt="">
-                    <a>
-                      <div class="mask rgba-white-slight"></div>
-                    </a>
-                  </div>
-                  <!--Card image-->
-    
-                  <!--Card content-->
-                  <div class="card-body text-center">
-                    <!--Category & Title-->
-                    <a href="" class="grey-text">
-                      <h5 >Shirt</h5>
-                    </a>
-                    <h5>
-                      <strong>
-                        <a href="" class="dark-grey-text">Denim shirt
-                        </a>
-                      </strong>
-                    </h5>
-                    <p>
-                     found on 12/6/2018
-                    </p>
-                    <a href=""> see more</a>
-    
-                  </div>
-                  <!--Card content-->
-    
-                </div>
-                <!--Card-->
-    
-              </div>
-              <!--Grid column-->
-                 <!--Grid column-->
-                 <div class="col-lg-3 col-md-6 mb-4">
-    
-                  <!--Card-->
-                  <div class="card">
-      
-                    <!--Card image-->
-                    <div class="view overlay" style="height: 150px;">
-                      <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"  alt="">
-                      <a>
-                        <div class="mask rgba-white-slight"></div>
-                      </a>
-                    </div>
-                    <!--Card image-->
-      
-                    <!--Card content-->
-                    <div class="card-body text-center">
-                      <!--Category & Title-->
-                      <a href="" class="grey-text">
-                        <h5 >Shirt</h5>
-                      </a>
-                      <h5>
-                        <strong>
-                          <a href="" class="dark-grey-text">Denim shirt
-                          </a>
-                        </strong>
-                      </h5>
-                      <p>
-                       found on 12/6/2018
-                      </p>
-                      <a href=""> see more</a>
-      
-                    </div>
-                    <!--Card content-->
-      
-                  </div>
-                  <!--Card-->
-      
-                </div>
-                <!--Grid column-->
+                  <!--Grid column-->
+              <?php  endwhile;
+              else:
+                echo "No items found";
+              endif;
+             ?>            
+              
+            
     
             </div>
 
           </div>
           <div class="tab-pane fade" id="docs" role="tabpanel" aria-labelledby="docs-tab">
-            <div class="row wow fadeIn">
-
-              <!--Grid column-->
-              <div class="col-lg-3 col-md-6 mb-4">
-    
-                <!--Card-->
-                <div class="card">
-    
-                  <!--Card image-->
-                  <div class="view overlay" style="height: 150px;">
-                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"  alt="">
-                    <a>
-                      <div class="mask rgba-white-slight"></div>
-                    </a>
-                  </div>
-                  <!--Card image-->
-    
-                  <!--Card content-->
-                  <div class="card-body text-center">
-                    <!--Category & Title-->
-                    <a href="" class="grey-text">
-                      <h5 >Shirt</h5>
-                    </a>
-                    <h5>
-                      <strong>
-                        <a href="" class="dark-grey-text">Denim shirt
-                        </a>
-                      </strong>
-                    </h5>
-                    <p>
-                     found on 12/6/2018
-                    </p>
-                    <a href=""> see more</a>
-    
-                  </div>
-                  <!--Card content-->
-    
-                </div>
-                <!--Card-->
-    
-              </div>
-              <!--Grid column-->
-                 <!--Grid column-->
-                 <div class="col-lg-3 col-md-6 mb-4">
-    
-                  <!--Card-->
-                  <div class="card">
-      
-                    <!--Card image-->
-                    <div class="view overlay" style="height: 150px;">
-                      <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"  alt="">
-                      <a>
-                        <div class="mask rgba-white-slight"></div>
-                      </a>
-                    </div>
-                    <!--Card image-->
-      
-                    <!--Card content-->
-                    <div class="card-body text-center">
-                      <!--Category & Title-->
-                      <a href="" class="grey-text">
-                        <h5 >Shirt</h5>
-                      </a>
-                      <h5>
-                        <strong>
-                          <a href="" class="dark-grey-text">Denim shirt
-                          </a>
-                        </strong>
-                      </h5>
-                      <p>
-                       found on 12/6/2018
-                      </p>
-                      <a href=""> see more</a>
-      
-                    </div>
-                    <!--Card content-->
-      
-                  </div>
-                  <!--Card-->
-      
-                </div>
+           <div class="row wow fadeIn">                      
+            <?php 
+            $allsql="SELECT * FROM items WHERE category='documents'";
+            $all_result=$connect->query($allsql);
+            if($all_result):
+              while($allrows=$all_result->fetch_assoc()):?>
                 <!--Grid column-->
-                   <!--Grid column-->
-              <div class="col-lg-3 col-md-6 mb-4">
-    
-                <!--Card-->
-                <div class="card">
-    
-                  <!--Card image-->
-                  <div class="view overlay" style="height: 150px;">
-                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"  alt="">
-                    <a>
-                      <div class="mask rgba-white-slight"></div>
-                    </a>
-                  </div>
-                  <!--Card image-->
-    
-                  <!--Card content-->
-                  <div class="card-body text-center">
-                    <!--Category & Title-->
-                    <a href="" class="grey-text">
-                      <h5 >Shirt</h5>
-                    </a>
-                    <h5>
-                      <strong>
-                        <a href="" class="dark-grey-text">Denim shirt
-                        </a>
-                      </strong>
-                    </h5>
-                    <p>
-                     found on 12/6/2018
-                    </p>
-                    <a href=""> see more</a>
-    
-                  </div>
-                  <!--Card content-->
-    
-                </div>
-                <!--Card-->
-    
-              </div>
-              <!--Grid column-->
-                 <!--Grid column-->
-                 <div class="col-lg-3 col-md-6 mb-4">
-    
-                  <!--Card-->
-                  <div class="card">
-      
-                    <!--Card image-->
-                    <div class="view overlay" style="height: 150px;">
-                      <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"  alt="">
-                      <a>
-                        <div class="mask rgba-white-slight"></div>
-                      </a>
-                    </div>
-                    <!--Card image-->
-      
-                    <!--Card content-->
-                    <div class="card-body text-center">
-                      <!--Category & Title-->
-                      <a href="" class="grey-text">
-                        <h5 >Shirt</h5>
-                      </a>
-                      <h5>
-                        <strong>
-                          <a href="" class="dark-grey-text">Denim shirt
-                          </a>
-                        </strong>
-                      </h5>
-                      <p>
-                       found on 12/6/2018
-                      </p>
-                      <a href=""> see more</a>
-      
-                    </div>
-                    <!--Card content-->
-      
-                  </div>
-                  <!--Card-->
-      
-                </div>
-                <!--Grid column-->
-    
-            </div>
-          </div>
-          <div class="tab-pane fade" id="elects" role="tabpanel" aria-labelledby="elects-tab">
-            <div class="row wow fadeIn">
-
-              <!--Grid column-->
-              <div class="col-lg-3 col-md-6 mb-4">
-    
-                <!--Card-->
-                <div class="card">
-    
-                  <!--Card image-->
-                  <div class="view overlay" style="height: 150px;">
-                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"  alt="">
-                    <a>
-                      <div class="mask rgba-white-slight"></div>
-                    </a>
-                  </div>
-                  <!--Card image-->
-    
-                  <!--Card content-->
-                  <div class="card-body text-center">
-                    <!--Category & Title-->
-                    <a href="" class="grey-text">
-                      <h5 >Shirt</h5>
-                    </a>
-                    <h5>
-                      <strong>
-                        <a href="" class="dark-grey-text">Denim shirt
-                        </a>
-                      </strong>
-                    </h5>
-                    <p>
-                     found on 12/6/2018
-                    </p>
-                    <a href=""> see more</a>
-    
-                  </div>
-                  <!--Card content-->
-    
-                </div>
-                <!--Card-->
-    
-              </div>
-              <!--Grid column-->
-                 <!--Grid column-->
-                 <div class="col-lg-3 col-md-6 mb-4">
-    
-                  <!--Card-->
-                  <div class="card">
-      
-                    <!--Card image-->
-                    <div class="view overlay" style="height: 150px;">
-                      <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"  alt="">
-                      <a>
-                        <div class="mask rgba-white-slight"></div>
-                      </a>
-                    </div>
-                    <!--Card image-->
-      
-                    <!--Card content-->
-                    <div class="card-body text-center">
-                      <!--Category & Title-->
-                      <a href="" class="grey-text">
-                        <h5 >Shirt</h5>
-                      </a>
-                      <h5>
-                        <strong>
-                          <a href="" class="dark-grey-text">Denim shirt
-                          </a>
-                        </strong>
-                      </h5>
-                      <p>
-                       found on 12/6/2018
-                      </p>
-                      <a href=""> see more</a>
-      
-                    </div>
-                    <!--Card content-->
-      
-                  </div>
-                  <!--Card-->
-      
-                </div>
-                <!--Grid column-->
-                   <!--Grid column-->
-    
-            </div>
-          </div>
-          <div class="tab-pane fade" id="books" role="tabpanel" aria-labelledby="books-tab">   <div class="row wow fadeIn">
-
-            <!--Grid column-->
-            <div class="col-lg-3 col-md-6 mb-4">
-  
+                <div class="col-lg-3 col-md-6 mb-4">    
               <!--Card-->
-              <div class="card">
-  
+              <div class="card">    
                 <!--Card image-->
                 <div class="view overlay" style="height: 150px;">
                   <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"  alt="">
@@ -678,39 +311,92 @@
                     <div class="mask rgba-white-slight"></div>
                   </a>
                 </div>
-                <!--Card image-->
-  
+                <!--Card image-->    
                 <!--Card content-->
                 <div class="card-body text-center">
-                  <!--Category & Title-->
-                  <a href="" class="grey-text">
-                    <h5 >Shirt</h5>
-                  </a>
                   <h5>
                     <strong>
-                      <a href="" class="dark-grey-text">Denim shirt
-                      </a>
+                      <a href="" class="dark-grey-text"><?=$allrows['item_name']?> </a>
                     </strong>
                   </h5>
                   <p>
-                   found on 12/6/2018
+                    Found on <?=  date("Y,m,d",strtotime($allrows['date'])) ?>
                   </p>
-                  <a href=""> see more</a>
-  
+                  <a href="item.php?id=1"> see more</a>
+
                 </div>
                 <!--Card content-->
-  
+
               </div>
               <!--Card-->
-  
+
             </div>
-            <!--Grid column-->
-               <!--Grid column-->
-               <div class="col-lg-3 col-md-6 mb-4">
-  
+                <!--Grid column-->
+            <?php  endwhile;
+            else:
+              echo "No items found";
+            endif;
+            ?> 
+            </div>
+          </div>
+          <div class="tab-pane fade" id="elects" role="tabpanel" aria-labelledby="elects-tab">
+          <div class="row wow fadeIn">                      
+            <?php 
+            $allsql="SELECT * FROM items WHERE category='elects'";
+            $all_result=$connect->query($allsql);
+            if($all_result):
+              while($allrows=$all_result->fetch_assoc()):?>
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4">    
+              <!--Card-->
+              <div class="card">    
+                <!--Card image-->
+                <div class="view overlay" style="height: 150px;">
+                  <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"  alt="">
+                  <a>
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+                </div>
+                <!--Card image-->    
+                <!--Card content-->
+                <div class="card-body text-center">
+                  <h5>
+                    <strong>
+                      <a href="" class="dark-grey-text"><?=$allrows['item_name']?> </a>
+                    </strong>
+                  </h5>
+                  <p>
+                    Found on <?=  date("Y,m,d",strtotime($allrows['date'])) ?>
+                  </p>
+                  <a href="item.php?id=1"> see more</a>
+
+                </div>
+                <!--Card content-->
+
+              </div>
+              <!--Card-->
+
+            </div>
+                <!--Grid column-->
+            <?php  endwhile;
+            else:
+              echo "No items found";
+            endif;
+            ?> 
+            </div>
+          </div>
+          <div class="tab-pane fade" id="books" role="tabpanel" aria-labelledby="books-tab">  
+          <div class="row wow fadeIn">
+            <div class="row wow fadeIn">                      
+              <?php 
+              $allsql="SELECT * FROM items WHERE category='books'";
+              $all_result=$connect->query($allsql);
+              if($all_result):
+                while($allrows=$all_result->fetch_assoc()):?>
+                  <!--Grid column-->
+                  <div class="col-lg-3 col-md-6 mb-4">    
                 <!--Card-->
-                <div class="card">
-    
+                <div class="card">    
                   <!--Card image-->
                   <div class="view overlay" style="height: 150px;">
                     <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"  alt="">
@@ -718,36 +404,34 @@
                       <div class="mask rgba-white-slight"></div>
                     </a>
                   </div>
-                  <!--Card image-->
-    
+                  <!--Card image-->    
                   <!--Card content-->
                   <div class="card-body text-center">
-                    <!--Category & Title-->
-                    <a href="" class="grey-text">
-                      <h5 >Shirt</h5>
-                    </a>
                     <h5>
                       <strong>
-                        <a href="" class="dark-grey-text">Denim shirt
-                        </a>
+                        <a href="" class="dark-grey-text"><?=$allrows['item_name']?> </a>
                       </strong>
                     </h5>
                     <p>
-                     found on 12/6/2018
+                      Found on <?=  date("Y,m,d",strtotime($allrows['date'])) ?>
                     </p>
-                    <a href=""> see more</a>
-    
+                    <a href="item.php?id=1"> see more</a>
+
                   </div>
                   <!--Card content-->
-    
+
                 </div>
                 <!--Card-->
-    
+
               </div>
-              <!--Grid column-->
-                 <!--Grid column-->
-  
-          </div>
+                  <!--Grid column-->
+              <?php  endwhile;
+              else:
+                echo "No items found";
+              endif;
+              ?> 
+              </div>
+            </div>
           </div>
         </div>
       </section>

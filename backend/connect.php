@@ -2,7 +2,7 @@
 if(!session_id())session_start(); 
   $servername       = "localhost";
   $serverpass       = "";
-  $dbname           ="lost_and_found";
+  $dbname           ="lostnfound";
   $serverusername   = "root";
 
   $connect = new mysqli("$servername","$serverusername","$serverpass","$dbname");
