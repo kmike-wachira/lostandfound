@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Lost and found</title>
+  <title>Maseno lost and found</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="assets/fontawesome/css/all.css">
   <!-- Bootstrap core CSS -->
