@@ -9,22 +9,22 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
-  <link href="css/mdb.min.css" rel="stylesheet">
+  <link href="assets/css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link href="css/style.min.css" rel="stylesheet">
+  <link href="assets/css/style.min.css" rel="stylesheet">
 </head>
 
 <body>
 
   <!-- Navbar -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+   <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar p-4">
     <div class="container">
 
       <!-- Brand -->
       <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
-        <strong class="blue-text">MDB</strong>
+        <strong class="blue-text">LNF</strong>
       </a>
 
       <!-- Collapse -->
@@ -44,27 +44,16 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">About MDB</a>
+            <a class="nav-link waves-effect" href="about.html" target="_blank">About LNF</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
-              target="_blank">Free download</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href="https://mdbootstrap.com/education/bootstrap/" target="_blank">Free
-              tutorials</a>
+            <a class="nav-link waves-effect" href=""
+              target="_blank">Found items</a>
           </li>
         </ul>
 
         <!-- Right -->
         <ul class="navbar-nav nav-flex-icons">
-          <li class="nav-item">
-            <a class="nav-link waves-effect">
-              <span class="badge red z-depth-1 mr-1"> 1 </span>
-              <i class="fas fa-shopping-cart"></i>
-              <span class="clearfix d-none d-sm-inline-block"> Cart </span>
-            </a>
-          </li>
           <li class="nav-item">
             <a href="https://www.facebook.com/mdbootstrap" class="nav-link waves-effect" target="_blank">
               <i class="fab fa-facebook-f"></i>
@@ -75,18 +64,12 @@
               <i class="fab fa-twitter"></i>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="nav-link border border-light rounded waves-effect"
-              target="_blank">
-              <i class="fab fa-github mr-2"></i>MDB GitHub
-            </a>
-          </li>
         </ul>
 
       </div>
 
     </div>
-  </nav>
+   </nav>
   <!-- Navbar -->
 
   <!--Main layout-->
@@ -113,20 +96,14 @@
             <div class="mb-3">
               <a href="">
                 <span class="badge purple mr-1">Category 2</span>
-              </a>
-              <a href="">
-                <span class="badge blue mr-1">New</span>
-              </a>
-              <a href="">
-                <span class="badge red mr-1">Bestseller</span>
-              </a>
+              </a>            
             </div>
 
             <p class="lead">
               <span class="mr-1">
-                <del>$200</del>
+                <strong>Found on:</strong>
               </span>
-              <span>$100</span>
+              <span>12/12/2000</span>
             </p>
 
             <p class="lead font-weight-bold">Description</p>
@@ -137,11 +114,9 @@
 
             <form class="d-flex justify-content-left">
               <!-- Default input -->
-              <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-              <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
-                <i class="fas fa-shopping-cart ml-1"></i>
+              <button class="btn btn-primary btn-md my-0 p" type="submit">Claim item
+                <i class="fas fa-hands-helping ml-1"></i>
               </button>
-
             </form>
 
           </div>
@@ -161,11 +136,9 @@
         <!--Grid column-->
         <div class="col-md-6 text-center">
 
-          <h4 class="my-4 h4">Additional information</h4>
+          <h4 class="my-4 h4">Related items</h4>
 
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo soluta odit
-            voluptates,
-            quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum.</p>
+          <p>This are also some items related to the product you are about claim.Please help us get contact to the owners</p>
 
         </div>
         <!--Grid column-->
@@ -175,28 +148,19 @@
 
       <!--Grid row-->
       <div class="row wow fadeIn">
-
         <!--Grid column-->
         <div class="col-lg-4 col-md-12 mb-4">
-
           <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg" class="img-fluid" alt="">
-
         </div>
         <!--Grid column-->
-
         <!--Grid column-->
         <div class="col-lg-4 col-md-6 mb-4">
-
           <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/12.jpg" class="img-fluid" alt="">
-
         </div>
         <!--Grid column-->
-
         <!--Grid column-->
         <div class="col-lg-4 col-md-6 mb-4">
-
           <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="">
-
         </div>
         <!--Grid column-->
 
