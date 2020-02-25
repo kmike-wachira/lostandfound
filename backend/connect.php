@@ -38,63 +38,37 @@ if(!session_id())session_start();
   }
 
   // add poem to database
-  if(isset($_POST['add-poem'])){
-      $poem_title=$_POST['poem-title'];
-      $id=$_SESSION['id'];
-      $poem_body=mysqli_real_escape_string($connect,$_POST['poem-body']);
-    if(isset($_FILES['image']['name']) && !empty($_FILES['image']['name'])){ 
-      $image = $_FILES['image']['name'];
-      // echo basename($image);
-      $target = "uploads/".basename($image);
-      $imagename=basename($image);
-      // $file_size =$_FILES['image']['size'];
-      $file_tmp =$_FILES['image']['tmp_name']; 
-      move_uploaded_file($file_tmp,$target);
-        $sql = "INSERT INTO `poems`( `poet`, `title`, `picture`, `body`) VALUES ('$id','$poem_title','$image','$poem_body')";
-          if($connect->query($sql) === TRUE ){
+  if(isset($_POST['additem'])){
+      $item_name=$_POST['itemname'];
+      // $id=$_SESSION['id'];
+      $category=$_POST['itemcategory'];
+      $itemdescription=mysqli_real_escape_string($connect,$_POST['itemdesc']);
+          if(isset($_FILES['itemimage']['name']) && !empty($_FILES['itemimage']['name'])){ 
+            $image = $_FILES['itemimage']['name'];
+            $target = "images/".basename($image);
+            $imagename=basename($image);
+            $file_tmp =$_FILES['itemimage']['tmp_name']; 
             move_uploaded_file($file_tmp,$target);
-            echo'<script type="text/javascript">alert("Uploaded successsfully");
-                   window.location.replace("addpoem.php");
-                 </script>';
-           }
-    }else{
-      $sql1 = "INSERT INTO `poems`(`poet`, `title`,`body`) VALUES ('$id','$poem_title','$poem_body')";
-      if($connect->query($sql1) === TRUE ){
-        echo'<script type="text/javascript">alert("Uploaded successsfully");
-               window.location.replace("addpoem.php");
-             </script>';
-       }else{
-        echo'<script type="text/javascript">alert("Poem was not uploaded");
-              window.location.replace("addpoem.php");
-            </script>';
-       }
-    }
-    
-  }
-// add a book 
-    if(isset($_POST['add-book'])){
-      $booktitle=$_POST['booktitle'];
-      $summary= $_POST['description'];
-      $author= $_POST['author'];
-      if(isset($_FILES['myfile']['name']) && !empty($_FILES['myfile']['name'])){ 
-        $file = $_FILES['myfile']['name'];
-        $target = "uploads/pdf/".basename($file);
-        $filename=basename($file);
-        $file_tmp =$_FILES['myfile']['tmp_name']; 
-        move_uploaded_file($file_tmp,$target);
-          $sql = "INSERT INTO `books`(`title`, `author`,`description`, `url`) VALUES ('$booktitle','$author','$summary','$filename')";
-            if($connect->query($sql) === TRUE ){
-              move_uploaded_file($file_tmp,$target);
-              echo'<script type="text/javascript">alert("Uploaded successsfully");
-                    window.location.replace("addbook.php");
+            $sql = "INSERT INTO `items`(`item_name`, `description`, `state`, `category`, `uploaded_by`, `image`)
+             VALUES ('$item_name','$itemdescription','0','$category','5','$imagename')";
+              if($connect->query($sql) === TRUE ){
+                move_uploaded_file($file_tmp,$target);
+                echo'<script type="text/javascript">alert("Uploaded successsfully");
+                      window.location.replace("/");
+                    </script>';
+              }else{
+                echo'<script type="text/javascript">alert("An error occured");
+                window.location.replace("/");
                   </script>';
-            }
-      }else{ 
-        echo'<script type="text/javascript">alert("An error occurred");
-                window.location.replace("addbook.php");
+              }
+          }else{
+            echo'<script type="text/javascript">alert("Please select an image for your item.");
+              window.location.replace("/");
             </script>';
-      }  
-    }
+          }
+          
+  }
+
       //Members signup
     if(isset($_POST['signup'])){
         $name=$_POST['name'];
@@ -149,34 +123,6 @@ if(!session_id())session_start();
           echo '<script type="text/javascript">alert("Login failed.Try again");
            window.location.replace("signin.php");
           </script>';
-        }
-      }
-      // edit profile
-      if(isset($_POST['editprofile'])){
-        $pimage = $_FILES['pimage']['name'];
-        $target = "uploads/".basename($pimage);
-        $pimagename=basename($pimage);
-        $pimage_tmp =$_FILES['pimage']['tmp_name']; 
-        $data=getAll($connect,$_SESSION['id']);
-        $name = !empty($_POST['name']) ? $_POST['name'] : $data[0][1];
-        $indname = !empty($_POST['indname']) ? $_POST['indname'] : $data[0][2];
-        if($indname){
-          unset($_SESSION['user']);
-          $_SESSION['user']=$indname;
-        }
-        $id=$_SESSION['id'];
-        $image = basename($_FILES['pimage']['name']) !=="" ? basename($_FILES['pimage']['name']) : $data[0][6] ;
-        $sql="UPDATE `users` SET `Full Name`='$name',`industry_name`='$indname',`profilepic`='$image' WHERE `id`='$id'";
-        if($connect->query($sql)===TRUE){
-        move_uploaded_file($pimage_tmp,$target);
-
-          echo'<script type="text/javascript">alert("Updated successsfully");
-                    window.location.replace("profile.php");
-                  </script>';
-        }else{
-          echo'<script type="text/javascript">alert("Failed to update status");
-                    window.location.replace("profile.php");
-                  </script>';
         }
       }
 ?>

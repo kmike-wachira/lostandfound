@@ -85,8 +85,10 @@ include('backend/connect.php');
         <?php 
          $itemsql="SELECT * FROM items WHERE id=${_GET['id']}";
          $item_result=$connect->query($itemsql);
+         $category="";
          if($item_result):
-           while($itemrows=$item_result->fetch_assoc()):?>
+           while($itemrows=$item_result->fetch_assoc()):   $category=$itemrows['category']?>
+         
         <div class="col-md-6 mb-4">
           <img src="<?= "images/".$itemrows['image'] ?>" class="img-fluid" alt="<?=$itemrows['item_name']?>">
         </div>
@@ -98,6 +100,8 @@ include('backend/connect.php');
             <div class="mb-3">
               <a href="">
                 <span class="badge purple mr-1"><?=$itemrows['category']?></span>
+            <p class="lead font-weight-bold"><?=$itemrows['item_name']?></p>
+
               </a>            
             </div>
 
@@ -105,7 +109,7 @@ include('backend/connect.php');
               <span class="mr-1">
                 <strong> Found on </strong>
               </span>
-              <span><?=  date("Y,m,d",strtotime($itemrows['date'])) ?></span>
+              <span><?=  date('M j<\s\up>S</\s\up> Y',strtotime($itemrows['date'])) ?></span>
             </p>
             <p class="lead font-weight-bold">Description</p>
             <p><?= $itemrows['description']?></p>
@@ -152,7 +156,7 @@ include('backend/connect.php');
       <!--Grid row-->
       <div class="row wow fadeIn"> 
         <?php 
-         $relateditemsql="SELECT * FROM items WHERE category='documents' limit 3";
+         $relateditemsql="SELECT * FROM items WHERE category='$category' limit 3";
          $relateditem_result=$connect->query($relateditemsql);
          if($relateditem_result):
            while($relateditemrows=$relateditem_result->fetch_assoc()):?>
@@ -160,6 +164,7 @@ include('backend/connect.php');
             <div class="col-lg-4 col-md-12 mb-4">
               <img src="<?="images/".$relateditemrows['image'] ?>" class="img-fluid" alt="">
             </div>
+            <?= $itemrows['category'];?>
         <?php
            endwhile;
           else:
