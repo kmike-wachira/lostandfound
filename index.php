@@ -1,4 +1,5 @@
-<?php include('backend/connect.php')?>
+<?php include('backend/connect.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,57 +50,65 @@
 <body>
 
   <!-- Navbar -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar p-4">
-    <div class="container">
+ 
+<nav class="navbar navbar-expand-lg fixed-top  grey lighten-5 p-3">
 
-      <!-- Brand -->
-      <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
-        <strong class="blue-text">LNF</strong>
+<!-- Navbar brand -->
+<a class="navbar-brand text-dark" href="/">Navbar</a>
+
+<!-- Collapse button -->
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+  aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+<!-- Collapsible content -->
+<div class="collapse navbar-collapse" id="basicExampleNav">
+
+  <!-- Links -->
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link text-dark" href="/">Home
+        <span class="sr-only">(current)</span>
       </a>
-
-      <!-- Collapse -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <!-- Links -->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-        <!-- Left -->
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link waves-effect" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href="about.html" target="_blank">About LNF</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href=""
-              target="_blank">Found items</a>
-          </li>
-        </ul>
-
-        <!-- Right -->
-        <ul class="navbar-nav nav-flex-icons">
-          <li class="nav-item">
-            <a href="https://www.facebook.com/mdbootstrap" class="nav-link waves-effect" target="_blank">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="https://twitter.com/MDBootstrap" class="nav-link waves-effect" target="_blank">
-              <i class="fab fa-twitter"></i>
-            </a>
-          </li>
-        </ul>
-
-      </div>
-
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-dark" href="#">About us</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-dark" data-toggle="modal" data-target="#modalContactForm" href="#">Write to us</a>
+    </li>
+    <!-- Dropdown -->
+  </ul>
+  <form class="form-inline">
+    <div class="md-form my-0">
+      <input class="form-control mr-sm-2"  class="text-dark" type="text" placeholder="Search" aria-label="Search">
     </div>
-  </nav>
+  </form>
+  <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item">
+        <a class="nav-link waves-effect waves-light">1
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+      <li class="nav-item avatar dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="rounded-circle z-depth-0"
+            alt="avatar image" style="width: 50px;height:50px">
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
+          aria-labelledby="navbarDropdownMenuLink-55">
+          <a class="dropdown-item"data-toggle="modal" data-target="#modalLoginForm" href="#">Login</a>
+          <a class="dropdown-item" data-toggle="modal" data-target="#modalRegisterForm" href="#">Sign in</a>
+          <a class="dropdown-item" data-toggle="modal" data-target="#additem" href="#">Add item</a>
+        </div>
+      </li>
+    </ul>
+  <!-- Links -->
+</div><!-- Collapsible content -->
+
+</nav>
   <!-- Navbar -->
 
   <!--Carousel Wrapper-->
@@ -229,7 +238,7 @@
       
       </nav>
       <!--/.Navbar-->
-      <!--Navbar-->
+      
    
       <!--/.Navbar-->
 
@@ -238,9 +247,7 @@
         <div class="tab-content" id="myTabContent">
           <!-- tabs -->
           <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
-            <div class="row wow fadeIn">
-
-             
+            <div class="row wow fadeIn">             
              <?php 
               $allsql="SELECT * FROM items";
               $all_result=$connect->query($allsql);
@@ -252,7 +259,7 @@
                 <div class="card">    
                   <!--Card image-->
                   <div class="view overlay" style="height: 150px;">
-                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"  alt="">
+                    <img src="<?="images/".$allrows['image']?>" class="card-img-top"  alt="">
                     <a>
                       <div class="mask rgba-white-slight"></div>
                     </a>
@@ -270,9 +277,9 @@
                       </strong>
                     </h5>
                     <p>
-                     Found on <?=  date("Y,m,d",strtotime($allrows['date'])) ?>
+                     Found on <?=  date('M j<\s\up>S</\s\up> Y',strtotime($allrows['date'])) ?>
                     </p>
-                    <a href="item.php?id=1"> see more</a>
+                    <a href="<?="item.php?id=".$allrows['id']?>"> see more</a>
     
                   </div>
                   <!--Card content-->
@@ -306,7 +313,7 @@
               <div class="card">    
                 <!--Card image-->
                 <div class="view overlay" style="height: 150px;">
-                  <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"  alt="">
+                  <img src="<?="images/".$allrows['image']?>" class="card-img-top"  alt="">
                   <a>
                     <div class="mask rgba-white-slight"></div>
                   </a>
@@ -322,7 +329,7 @@
                   <p>
                     Found on <?=  date("Y,m,d",strtotime($allrows['date'])) ?>
                   </p>
-                  <a href="item.php?id=1"> see more</a>
+                  <a href="<?="item.php?id=".$allrows['id']?>"> see more</a>
 
                 </div>
                 <!--Card content-->
@@ -340,7 +347,7 @@
             </div>
           </div>
           <div class="tab-pane fade" id="elects" role="tabpanel" aria-labelledby="elects-tab">
-          <div class="row wow fadeIn">                      
+           <div class="row wow fadeIn">                      
             <?php 
             $allsql="SELECT * FROM items WHERE category='elects'";
             $all_result=$connect->query($allsql);
@@ -352,7 +359,7 @@
               <div class="card">    
                 <!--Card image-->
                 <div class="view overlay" style="height: 150px;">
-                  <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"  alt="">
+                  <img src="<?="images/".$allrows['image']?>" class="card-img-top"  alt="">
                   <a>
                     <div class="mask rgba-white-slight"></div>
                   </a>
@@ -366,9 +373,9 @@
                     </strong>
                   </h5>
                   <p>
-                    Found on <?=  date("Y,m,d",strtotime($allrows['date'])) ?>
+                    Found on <?=  date('M j<\s\up>S</\s\up> Y',strtotime($allrows['date'])) ?>
                   </p>
-                  <a href="item.php?id=1"> see more</a>
+                  <a href="<?="item.php?id=".$allrows['id']?>"> see more</a>
 
                 </div>
                 <!--Card content-->
@@ -386,7 +393,7 @@
             </div>
           </div>
           <div class="tab-pane fade" id="books" role="tabpanel" aria-labelledby="books-tab">  
-          <div class="row wow fadeIn">
+           <div class="row wow fadeIn">
             <div class="row wow fadeIn">                      
               <?php 
               $allsql="SELECT * FROM items WHERE category='books'";
@@ -399,7 +406,7 @@
                 <div class="card">    
                   <!--Card image-->
                   <div class="view overlay" style="height: 150px;">
-                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"  alt="">
+                    <img src="<?="images/".$allrows['image']?>" class="card-img-top"  alt="">
                     <a>
                       <div class="mask rgba-white-slight"></div>
                     </a>
@@ -413,9 +420,9 @@
                       </strong>
                     </h5>
                     <p>
-                      Found on <?=  date("Y,m,d",strtotime($allrows['date'])) ?>
+                      Found on <?=  date('M j<\s\up>S</\s\up> Y',strtotime($allrows['date'])) ?>
                     </p>
-                    <a href="item.php?id=1"> see more</a>
+                    <a href="<?="item.php?id=".$allrows['id']?>"> see more</a>
 
                   </div>
                   <!--Card content-->
@@ -561,3 +568,6 @@
 </body>
 
 </html>
+<?php
+      include('modal.php');
+?>
